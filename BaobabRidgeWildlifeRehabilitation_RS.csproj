@@ -18,4 +18,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BusinessLayer\" />
+    <Folder Include="DataLayer\" />
+    <Folder Include="PresentationLayer\" />
+  </ItemGroup>
+
 </Project>
