@@ -6,5 +6,14 @@ namespace BaobabRidgeWildlifeRehabilitation_RS
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+            
+        {
+            AnimalRepo repo = new AnimalRepo();
+            List<Animal> animallist = repo.GetAllAnimalsFromFile();
+            dgvAnimalsOutput.DataSource = animallist;
+            dgvAnimalsOutput.ReadOnly = true;
+        }
     }
 }
