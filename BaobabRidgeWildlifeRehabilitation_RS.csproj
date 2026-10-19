@@ -9,11 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="animals.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="DataLayer\animals.txt">
+    <Content Include="animals.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
