@@ -13,13 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="animals.txt">
+    <Content Include="DataLayer\animals.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLayer\" />
     <Folder Include="PresentationLayer\" />
   </ItemGroup>
 

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using BaobabRidgeWildlifeRehabilitation_RS.BusinessLayer;
 
-namespace BaobabRidgeWildlifeRehabilitation_RS
+namespace BaobabRidgeWildlifeRehabilitation_RS.DataLayer
 {
     public class AnimalRepo
     {
