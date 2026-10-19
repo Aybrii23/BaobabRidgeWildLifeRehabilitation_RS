@@ -35,7 +35,7 @@ namespace BaobabRidgeWildlifeRehabilitation_RS
                         int recoveryScore = int.Parse(parts[4]);
                         string healthStatus = parts[5];
                         string houseLocation = parts[6];
-                        Animal animal = new Animal(animalID, name, species, "", age, recoveryScore, healthStatus, houseLocation);
+                        Animal animal = new Animal(animalID, name, species, age, recoveryScore, healthStatus, houseLocation);
                         animals.Add(animal);
                     }
                 }

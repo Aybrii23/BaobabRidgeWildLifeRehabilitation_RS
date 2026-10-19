@@ -1,7 +1,3 @@
 <Solution>
-  <Folder Name="/Solution Items/">
-    <File Path=".gitignore" />
-    <File Path="animals.txt" />
-  </Folder>
   <Project Path="BaobabRidgeWildlifeRehabilitation_RS.csproj" />
 </Solution>
