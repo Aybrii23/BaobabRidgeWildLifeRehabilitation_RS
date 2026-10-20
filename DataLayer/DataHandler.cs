@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 using BaobabRidgeWildlifeRehabilitation_RS.BusinessLayer;
 
 namespace BaobabRidgeWildlifeRehabilitation_RS.DataLayer
@@ -77,7 +78,8 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.DataLayer
                 // read remaining properties from the passed-in Animal
                 string healthStatus = a.HealthStatus;
                 string houseLocation = a.HouseLocation;
-
+                 
+               a.CalculateStatusAndHousing();
                 Animal newAnimal = new Animal(id, name, species, age, score, healthStatus, houseLocation);
 
                 using (StreamWriter writer = new StreamWriter(filePath, append: true))
@@ -95,8 +97,9 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.DataLayer
             }
         }
           //UPDATE (SAVE ALL ANIMALS)
-        public bool SaveAnimal(List<Animal>animals)
+        public bool SaveAnimals(List<Animal>animals)
         {
+             string filePath = "animals.txt";
             try
             {
                 List<string> lines = new List<string>();
@@ -110,15 +113,15 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.DataLayer
             }
             catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show($"Save failed: 'animals.txt' is marked as read-only.\nDetails: {ex.Message}", "Permission Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Permission error: 'animals.txt' is read-only.\nDetails: " + ex.Message, "Error");
             }
             catch (IOException ex)
             {
-                MessageBox.Show($"Save failed: 'animals.txt' is locked by another program.\nDetails: {ex.Message}", "File Locked", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("IO error: 'animals.txt' is locked by another program.\nDetails: " + ex.Message, "Error");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Unexpected error saving data: {ex.Message}", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error saving animals: " + ex.Message, "Error");
             }
 
             return false;
