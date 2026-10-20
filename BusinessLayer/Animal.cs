@@ -27,7 +27,7 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.BusinessLayer
             HealthStatus = healthStatus;
             HouseLocation = houselocation;
         }
-         public void CalculateStatusandHousing()
+         public void CalculateStatusAndHousing()
          {
            switch (RecoveryScore)
              {
@@ -53,13 +53,18 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.BusinessLayer
                      break;
                  default:
                      HealthStatus = "UNKNOWN";
-                     HouseLocation= "UNKNOWN"; 
+                     HouseLocation= "Unassigned"; 
                      break;
              }
          }
         public override string ToString()
         {
            return $"Animal ID: {AnimalID}, Name: {Name}, Species: {Species}, Age: {Age}, Recovery Score: {RecoveryScore}, Health Status: {HealthStatus}, House Location: {HouseLocation}";
+        }
+        // Used by DataHandler when saving to animals.txt
+        public string ToPipeDelimitedString()
+        {
+            return $"{AnimalID}|{Name}|{Species}|{Age}|{RecoveryScore}|{HealthStatus}|{HouseLocation}";
         }
 
     }
