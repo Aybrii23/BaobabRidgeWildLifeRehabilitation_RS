@@ -94,6 +94,35 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.DataLayer
                 MessageBox.Show("Error writing to file: " + ex.Message, "Error");
             }
         }
+          //UPDATE (SAVE ALL ANIMALS)
+        public bool SaveAnimal(List<Animal>animals)
+        {
+            try
+            {
+                List<string> lines = new List<string>();
+                foreach (Animal animal in animals)
+                {
+                    lines.Add(animal.ToPipeDelimitedString());
+                }
+
+                File.WriteAllLines(filePath, lines, Encoding.UTF8);
+                return true;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show($"Save failed: 'animals.txt' is marked as read-only.\nDetails: {ex.Message}", "Permission Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"Save failed: 'animals.txt' is locked by another program.\nDetails: {ex.Message}", "File Locked", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unexpected error saving data: {ex.Message}", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
+        }
 
         public void DeleteAnimal(string animalID) //Retreive data from the ID input box to delete the animal from the file
         {
