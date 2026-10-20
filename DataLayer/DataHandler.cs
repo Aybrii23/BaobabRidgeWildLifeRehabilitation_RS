@@ -167,6 +167,59 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.DataLayer
                 MessageBox.Show("Error deleting animal: " + ex.Message, "Error");
             }
         }
+        public Animal SearchAnimal(string searchId)
+        {
+            string filePath = "animals.txt";
+            List<Animal> animals = GetAnimals(); // Reads all records from animals.txt
+
+            foreach (Animal animal in animals)
+            {
+               
+                if (animal.AnimalID.Equals(searchId.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    return animal; // Return matching Animal object
+                }
+            }
+
+            return null; // Return null if no match found
+        }
+
+        // READ ALL ANIMALS FROM TEXT FILE 
+        public List<Animal> GetAnimals()
+        {
+            string filePath = "animals.txt";
+            List<Animal> animalList = new List<Animal>();
+
+            if (!File.Exists(filePath))
+            {
+                return animalList;
+            }
+
+            string[] lines = File.ReadAllLines(filePath);
+
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                
+                string[] parts = line.Split('|');
+
+                if (parts.Length >= 5)
+                {
+                    string id = parts[0].Trim();
+                    string name = parts[1].Trim();
+                    string species = parts[2].Trim();
+                    int age = int.Parse(parts[3].Trim());
+                    int score = int.Parse(parts[4].Trim());
+
+                    Animal animal = new Animal(id, name, species, age, score);
+                    animalList.Add(animal);
+                }
+            }
+
+            return animalList;
+        }
+        
 
 
         public void Summary()
