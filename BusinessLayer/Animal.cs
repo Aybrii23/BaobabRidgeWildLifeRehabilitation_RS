@@ -23,7 +23,25 @@ namespace BaobabRidgeWildlifeRehabilitation_RS.BusinessLayer
             RecoveryScore = recoveryScore;
             HealthStatus = healthStatus;
             HouseLocation = houselocation;
+
         }
+
+        public static (string HealthStatus, string HousingUnit) ClassifyAnimal(int recoveryScore)
+        {
+            // Classification mapping based on Recovery Score (0 - 100)
+            if (recoveryScore >= 0 && recoveryScore <= 20)
+                return ("Critical", "Intensive Care Unit");
+            if (recoveryScore <= 50)
+                return ("Serious", "High-Dependency Ward");
+            if (recoveryScore <= 75)
+                return ("Recovering", "Outdoor Enclosure");
+            if (recoveryScore <= 100)
+                return ("Release-Ready", "Pre-Release Camp");
+
+            return ("Unknown", "Unassigned");
+        }
+
+
         public override string ToString()
         {
            return $"Animal ID: {AnimalID}, Name: {Name}, Species: {Species}, Age: {Age}, Recovery Score: {RecoveryScore}, Health Status: {HealthStatus}, House Location: {HouseLocation}";
